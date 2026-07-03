@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Did Not Reach Us — A Subject Guide · First Nation-Farmer Climate Unity March</title>
+<style>
+  :root{
+    --earth:#4a3728; --earth-dark:#2e2118; --sage:#4d5c3a; --gold:#ffd97a; --gold-dark:#b8860b;
+    --paper:#fffdf7; --ink:#1a1613; --accent:#8a2f1f; --card:#ffffff;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{font-family:Georgia,'Times New Roman',serif; background:var(--paper); color:var(--ink); line-height:1.7; font-size:1.08rem;}
+  header{background:linear-gradient(160deg,var(--earth-dark),var(--earth) 65%,#5d4632); color:#ffffff; padding:44px 20px 34px; text-align:center;}
+  header h1{font-size:clamp(1.8rem,4.5vw,2.8rem); letter-spacing:.5px;}
+  header .sub{font-style:italic; margin-top:12px; font-size:clamp(1.05rem,2.2vw,1.3rem); color:#ffeecb;}
+  header .meta{margin-top:14px; font-size:.95rem; letter-spacing:2px; text-transform:uppercase; color:#e8dcc4;}
+  .toolbar{max-width:980px; margin:20px auto 0; padding:0 22px; display:flex; gap:12px; flex-wrap:wrap;}
+  .toolbar button{font-family:inherit; border:2px solid var(--earth); background:#fff; color:var(--earth-dark); border-radius:22px; padding:10px 20px; cursor:pointer; font-size:1rem; font-weight:bold;}
+  .toolbar button.on{background:var(--accent); border-color:var(--accent); color:#fff;}
+  /* ===== HOME: subject grid ===== */
+  #home{max-width:980px; margin:0 auto; padding:30px 22px 70px;}
+  .groupTitle{font-size:1.35rem; color:var(--earth-dark); border-bottom:3px solid var(--gold-dark); padding-bottom:6px; margin:34px 0 18px; font-weight:bold;}
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px;}
+  .subj{background:var(--card); border:2px solid #c9b58f; border-radius:12px; padding:18px 18px 16px; cursor:pointer; text-align:left; font-family:inherit; box-shadow:0 2px 8px rgba(60,40,20,.12); transition:all .2s;}
+  .subj:hover{transform:translateY(-3px); border-color:var(--gold-dark); box-shadow:0 6px 14px rgba(60,40,20,.22);}
+  .subj .num{display:inline-block; background:var(--earth-dark); color:var(--gold); font-weight:bold; font-size:.95rem; border-radius:6px; padding:2px 10px; letter-spacing:1px;}
+  .subj h3{margin:10px 0 6px; color:var(--earth-dark); font-size:1.25rem; line-height:1.3;}
+  .subj p{font-size:1rem; color:#3d342a; margin:0;}
+  .subj .voicect{display:inline-block; margin-top:10px; color:var(--accent); font-weight:bold; font-size:.95rem;}
+  /* ===== CHAPTER view ===== */
+  #reader{display:none; max-width:840px; margin:0 auto; padding:30px 22px 70px;}
+  .crumb{margin-bottom:18px;}
+  .crumb button{font-family:inherit; background:var(--earth-dark); color:#fff; border:none; border-radius:8px; padding:10px 18px; font-size:1rem; cursor:pointer; font-weight:bold;}
+  .chap{display:none; animation:fade .4s;}
+  .chap.show{display:block;}
+  @keyframes fade{from{opacity:0; transform:translateY(12px);} to{opacity:1; transform:none;}}
+  .chaptag{display:inline-block; background:var(--sage); color:#fff; font-size:.9rem; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border-radius:16px; font-weight:bold;}
+  h2.chaptitle{font-size:clamp(1.6rem,3.8vw,2.2rem); margin:14px 0 20px; color:var(--earth-dark); line-height:1.25;}
+  .chap h3{color:var(--earth-dark); font-size:1.3rem; margin:26px 0 10px;}
+  .chap p{margin-bottom:16px;}
+  .quote{border-left:5px solid var(--gold-dark); background:#f6eeda; padding:16px 20px; margin:20px 0; font-style:italic; font-size:1.05rem;}
+  .quote .who{display:block; margin-top:10px; font-style:normal; font-weight:bold; font-size:1rem; color:var(--earth);}
+  .reach{background:var(--card); border:2px solid #d8c8a8; border-left:8px solid var(--accent); border-radius:10px; padding:18px 20px; margin:22px 0; box-shadow:0 3px 8px rgba(60,40,20,.12);}
+  .reach .rlabel{font-size:.85rem; letter-spacing:2px; text-transform:uppercase; color:var(--accent); font-weight:bold;}
+  .reach h4{margin:8px 0 10px; color:var(--earth-dark); font-size:1.2rem;}
+  .reach p{margin-bottom:10px; font-size:1.02rem;}
+  .reach p:last-child{margin-bottom:0;}
+  .people{display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:14px; margin:20px 0;}
+  .person{background:#fff; border:2px solid #c9b58f; border-radius:10px; padding:14px 16px;}
+  .person h4{color:var(--accent); font-size:1.1rem; margin-bottom:6px;}
+  .person p{font-size:.98rem; margin:0;}
+  .pager{display:flex; justify-content:space-between; margin-top:36px; gap:12px; flex-wrap:wrap;}
+  .pager button{font-family:inherit; background:var(--earth); color:#fff; border:none; padding:14px 22px; border-radius:8px; cursor:pointer; font-size:1.05rem; font-weight:bold;}
+  .pager button:hover{background:var(--earth-dark);}
+  body.voicesOnly .chap.show p:not(.keep), body.voicesOnly .chap.show h3, body.voicesOnly .chap.show .quote:not(.native){display:none;}
+  footer{background:var(--earth-dark); color:#f0e7d6; text-align:center; padding:28px 20px; font-size:1rem;}
+  footer a{color:var(--gold);}
+</style>
+</head>
+<body>
+<header>
+  <h1>What Did Not Reach Us</h1>
+  <div class="sub">A subject guide to the First Nation-Farmer Climate Unity March and the building of relationships</div>
+  <div class="meta">September 1–8, 2018 · 94 miles · Des Moines → Fort Dodge</div>
+</header>
+
+<div class="toolbar">
+  <button id="homeBtn" onclick="showHome()">☰ All subjects</button>
+  <button id="voicesBtn" onclick="toggleVoices()">✦ Show only the moments that reached us</button>
+</div>
+
+<div id="home"></div>
+<div id="reader"><div class="crumb"><button onclick="showHome()">← Back to all subjects</button></div><div id="chapbox"></div></div>
+
+<footer>
+  Compiled from the writings of Jeff Kisling · Full archive: <a href="https://firstnationfarmer.com/" target="_blank">firstnationfarmer.com</a><br>
+  “We change the world one story at a time.” — Richard Wagamese
+</footer>
+
+<script>
+const CH = [
+{g:0,num:'Intro',title:'What Did Not Reach Us',blurb:'The idea behind this guide: truths that never reached settlers through schools, news, or books began to reach us through relationship.',v:1,html:`
+<p class="keep">The March's deeper purpose was stated by Manape LaMere, one of the headsmen from Standing Rock: to make it possible for us to work together in the future. To work together, we needed to trust each other. To trust each other, we needed to understand each other. And to understand each other, we needed time — hours and days of unhurried time — to share our stories.</p>
+<p>There is a whole world of truth that had not reached most of us who are white settlers on this land: the residential schools and the trauma passed generation to generation like an open wound; the epidemic of missing and murdered Indigenous women; the theft of the land itself; a spirituality that recognizes the Spirit in trees, water, rocks, and wind. Our schools gave us a sanitized history. Our news did not carry these stories.</p>
+<p class="keep">What did not reach us through institutions began to reach us the only way it perhaps ever could — through growing relationships, walking side by side down empty Iowa gravel roads, often in the rain, sharing the struggle of ten to fifteen miles a day. Nearly every subject in this guide turns on a moment when a Native person chose to share something: a song, a word, a prayer, a story, a correction, a teaching. Each was a gift. Each was an act of trust earned mile by mile.</p>
+<div class="quote native">We are story. All of us. What comes to matter then is the creation of the best possible story we can while we're here; you, me, us, together… we get bigger inside, we see each other, we recognize our kinship — we change the world one story at a time.<span class="who">— Richard Wagamese (Ojibwe, Wabeseemoong Independent Nations)</span></div>`},
+
+{g:1,num:'Ch 1',title:'The Design of the March — Why Walking Worked',blurb:'Meetings and rallies never built relationships. Eight days of unavoidable, screen-free company did.',v:1,html:`
+<p>For years, protests, hearings, and committee meetings produced no relationships — people held signs for an afternoon and went home strangers. The March was designed differently: a small mixed group in continuous company for eight days, with a shared physical task hard enough to strip away pretense.</p>
+<div class="quote">We believed the land would pull out a different set of conversations and gift us with a different way of relating… This is exactly what happened.<span class="who">— Leanne Betasamosake Simpson, Rehearsals for Living</span></div>
+<p>The mechanism was relentless: pairing off, hour after hour, mile after mile. With twelve to twenty people marching, each of us eventually talked with every other person — tentative at first, then deeper, humor and hard subjects alike, building on every previous conversation.</p>
+<div class="reach"><span class="rlabel">✦ It reached us</span><h4>“This is a great walk because people actually talk with each other” — Matthew Lone Bear</h4><p>The best one-line summary of the whole design. Nothing else in modern life provides eight days of undistracted company.</p></div>
+<p>The moving village sustained itself: gear truck, solar trailer, compost-toilet-and-shower shed, the Veggie Thumper food truck (much of the food from Red Earth Farms at the Meskwaki Settlement), rotating chores, morning circles, evening forums. And every marcher signed a Code of Nonviolence — no anger, no weapons, dialogue with anyone who disagreed — because the previous year's march had been harassed, even with gunshots.</p>
+<div class="reach"><span class="rlabel">✦ It reached us</span><h4>“So that we could accomplish our sacred journey” — Manape LaMere</h4><p>Explaining the security he, Alton Onefeather, and Lakasha Yooxot Likipt would provide, Manape told us — before the first mile — that we were on a sacred journey. We had signed up for a protest walk. That reframing was the first gift, and the frame for everything that followed.</p></div>`},
+
+{g:1,num:'Ch 2',title:'Shared Struggle — Weather, Blisters, and the Community of Hardship',blurb:'Rain every day, a tornado nearby, 15-mile days, worn-out shoes. You cannot posture at mile twelve.',v:0,html:`
+<p>The forecast was rain every day, and the first days delivered: a 3 a.m. thunderstorm the first night; storms so severe at the Griffieon farm that a tornado was sighted twenty miles away and one tent was found in a field the next morning. On the third and fifth mornings we walked straight into hard rain. Nobody suggested waiting. Nobody complained — about anything, all week.</p>
+<p>Day one was 13.2 miles at a 90-degree heat index. Day four was fifteen miles under flash flood warnings. I wore a hole through my shoes and grew a blister; Miriam Kashia — who once walked 3,000 miles across America — became our foot doctor with adhesive foam and duct tape. I finished the March in my backup pair, at age 66.</p>
+<p class="keep">Here is the thing about shared struggle: you cannot posture at mile twelve. The rain, the heat, the blisters, and breaking camp in the dark dissolved the ordinary defenses between people faster than any facilitated dialogue could. Hardship also created constant small occasions for care: carrying each other's tents, doctoring feet, sharing sanctuary floors. The physical struggle was not incidental to the trust — it was the price of it, and we paid it together.</p>
+<p class="keep">And being outside all day changed us. Walking became far more interesting once I was aware — as Indigenous people have always been — that everything has the Spirit in it: trees, water, plants, rocks, wind. I found myself talking to the trees and birds as I walked. You cannot learn that at highway speed.</p>`},
+
+{g:1,num:'Ch 3',title:'Preparation — Getting Ready in Body and Spirit',blurb:'Training walks at 66, two duffel bags, a practice tent — and the question I carried about the boarding schools.',v:0,html:`
+<p>At 66, I trained for weeks after my friend Stan Sanders warned me that walking is harder than running. He was right. Everything had to fit in two duffels and a day pack: tent, twenty-degree bag, mess kit, wool socks, wide-brim hat, rain gear — and, crucially, a second pair of shoes. I practiced pitching the tent indoors, finding the instructions sewn into its bag.</p>
+<p>The interior preparation was harder: I read about the previous march's harassment, and I carried a question onto the road — whether, and how, to speak about the Quaker role in the Indian residential schools.</p>
+<p>Community prepared around us too: Bear Creek Friends held us in prayer, and Liz Oppenheimer organized a daily 8:30 a.m. meeting for worship by conference call for the whole March.</p>
+<p class="keep">At Union Park on August 31 we were mostly strangers. Tents pitched in the wrong spot were carried, fully assembled, across the park by everyone together — community-building began with tent-carrying. That night the first thunderstorm arrived at 3 a.m., and I lay in a dry tent wondering what I had gotten into. What you get into will change you. Sometimes you just don't know what you're getting into. Those can be times of great opportunity.</p>`},
+
+{g:1,num:'Ch 5',title:'Hospitality — The Kindness of the Route',blurb:'Cookies in Ankeny, sanctuary in a Lutheran church, showers at a golf club: every kindness crossed a divide.',v:0,html:`
+<p>The route kept answering us with kindness. The Broadbooks family of Ankeny invited thirty sweaty strangers in for homemade cookies on the first brutal afternoon. The Griffieons gave us their farmyard and their machine shed in the storm. When the Huxley campsite flooded, Fjeldberg Lutheran Church offered sanctuary — a congregation of Lutheran farmers hosting a camp of Native water protectors and environmentalists overnight. Ames, Boone, Pilot Mound, the Dayton golf club with its internet and showers, the Nelsons' farm — and on the last morning, a police escort through downtown Fort Dodge.</p>
+<p class="keep">Interaction with host communities was, the organizers said, perhaps the most important aspect of the March: exchanging stories with rural Iowans about climate, farming, and small-town life in a polarized era. A March t-shirt appearing in a Pilot Mound shop window was a measurable result. Trust among the marchers and trust with the countryside grew by the same mechanism: showing up in person, in the rain, and accepting help.</p>`},
+
+{g:2,num:'Ch 6',title:'Sacred Journey — Ceremony, Prayer, and Spirit',blurb:'Songs, smudging, the tipi, and prayers at every crossing of the black snake.',v:1,html:`
+<div class="reach"><span class="rlabel">✦ It reached us</span><h4>Songs at the beginning — Regina Tsosie and Manape LaMere</h4><p>Regina opened the IUB press conference with a song — the first prayer of the journey — and told the press the two-part truth: the pipeline could poison the water, <i>and</i> it had desecrated sacred sites. At Birdland Park, Ako Abdul-Samad blessed us and Manape sang, his voice carrying over the swollen river.</p></div>
+<div class="reach"><span class="rlabel">✦ It reached us</span><h4>Smudging — Trisha Etringer</h4><p>On the rainy third morning Trisha performed smudging for all of us, Native and non-native alike — burning sage to remove negative energy and bring positive energy. My feet actually felt better. The sage returned on the fifth morning in the hardest rain; the tipi rose three times along the route, a visual declaration of Native presence.</p></div>
+<div class="reach"><span class="rlabel">✦ It reached us</span><h4>Prayers at the pipeline crossings — Donnielle Wanatee</h4><p>Every crossing of the buried pipeline was marked by a circle, held hands, and prayer — most often Donnielle's, asking protection for the walkers and our families. Kathy Byrnes wept at the first crossing; a landowner marching with us wept at others; every one of us felt the trauma of land and water desecrated by the black snake. The ceremonies taught our bodies what our minds had only abstractly known. On a bridge on day seven, painted words summed up all the prayers: <b>Mni Wiconi — Water Is Life.</b></p></div>
+<p>Sharing traveled both directions. At the crossing before Pilot Mound I was asked to lead the prayers, and our circle worshiped in Quaker silence; Miriam had already told someone, "He's a Quaker, and all Quakers are ministers." Quakers at home held us in daily prayer by conference call. And Foxy Onefeather gave the March its shortest creed: <b>Earth is my church.</b></p>
+<p class="keep">Faith, I keep re-learning, is not hoping what you want will occur; it is seeking what the Spirit is asking of you.</p>`},
+
+{g:2,num:'Ch 4 & 7',title:'The Land and Eminent Domain — Who It Was Taken From',blurb:'The case we marched for, and the older theft underneath it. Thanks-taking. Sovereignty at the bonfire.',v:1,html:`
+<p>The lawsuit: nine landowners and the Sierra Club argued the Iowa Utilities Board illegally granted eminent domain to a private Texas company to force the pipeline across farms whose owners refused. The Court heard arguments September 12 — four days after the March — and later ruled for the pipeline. As legal witness the March failed. It was never only about the case.</p>
+<div class="reach"><span class="rlabel">✦ It reached us</span><h4>Two land thefts, one evening — Regina Tsosie at the Griffieon farm</h4><p>After our hosts told of fighting the city of Ankeny for their farm, Regina embraced them — and drew the parallel to the theft of Native lands across the continent. The farmland taken for the pipeline had itself first been taken from Native peoples. A white farm family and a Native woman, recognizing each other's story: the unity in Climate Unity, night one. The next morning Craig's tractor carried the tipi poles to our gear truck.</p></div>
+<div class="reach"><span class="rlabel">✦ It reached us</span><h4>“We call it Thanks-taking” — Manape LaMere</h4><p>Over buffalo and fry bread in Boone, I mused that this would make a nice “real” Thanksgiving. Manape's one quiet word carried the whole history the schoolbooks whitewashed. It lodged at that table and never left.</p></div>
+<div class="reach"><span class="rlabel">✦ It reached us</span><h4>Sovereignty, around the fire — Trisha and Manape</h4><p>On the last night of camping, Trisha led a discussion of decolonization, and Manape spoke of sovereignty — of nations and of the self, and why he concluded he should give up both his U.S. citizenship and his tribal membership to achieve his own. These were not day-one topics. They required 160 accumulated miles of trust.</p></div>
+<p class="keep">Donnielle's warning at Fort Dodge held the whole analysis: <i>"They came for us at Standing Rock. They'll come for everybody if we don't band together… You have to stand together."</i> First Nation and Farmer were not two constituencies sharing an enemy — they were two peoples at different points in the same long story about land and power, meeting at last to compare notes. Years later, the same eminent domain playbook returned with the CO2 pipelines; this time, the coalition already existed.</p>`},
+
+{g:2,num:'Ch 8',title:'The Boarding Schools — An Open Wound',blurb:'The heaviest truth: Quaker-run schools, intergenerational trauma, and the story of a friend’s mother.',v:1,html:`
+<p>As Native nations were overrun, Native children were forcibly assimilated in residential schools — some run by Quakers. Thousands of children died or were abused; the trauma passes generation to generation, an open wound in Native communities today. I carried a question onto the road: could trust be built between the Quakers and the Native people on the March while that history stayed unspoken? It could not.</p>
+<div class="reach"><span class="rlabel">✦ It reached us</span><h4>Matthew's story about his mother</h4><p>Walking together — I believe it was the second day — I told Matthew Lone Bear that I knew about Quaker involvement in the residential schools, and that I was sorry. He nodded, and we kept walking. A few hours later he said he wanted to tell me a story: a traumatic incident related to his mother and the schools. It was not absolution, and it resolved nothing. It was a Native man deciding this white Quaker could be trusted with a piece of his family's pain. A history available in books for decades reached me at last — as a story about someone's mother, told by a friend on a gravel road.</p></div>
+<p class="keep">In the years since, each of my Native friends, when the subject arose, had personal experiences related to the schools. Sikowis's own George Gordon First Nation had the longest-running residential school in Canada — it did not close until 1996. In 2022, at her invitation, Iowa Conservative Friends put their entire peace-and-justice budget behind "They Found Us," the documentary about the ground search for unmarked graves at that school. Quakers materially supporting Native people telling the truth about the schools Quakers helped run: a beginning of truth and healing. A beginning only.</p>
+<div class="quote">How can all of us living today even begin to heal from such brutality? It is a mistake to minimize the difficult and painful path before all of us. Was this March part of the way forward? I think so, but it is, and will be, a long journey.<span class="who">— Peter Clay, Quaker Earthcare Witness</span></div>`},
+
+{g:2,num:'Ch 9',title:'Missing and Murdered Indigenous Women',blurb:'An epidemic that had never reached us — carried on a poster for 94 miles, then into the U.S. Senate.',v:1,html:`
+<p>I had opposed pipelines for years and never heard of MMIW until February 2018, in Minneapolis, when every Native speaker — Sikowis and Donnielle among them — spoke of it: much of the violence comes from the man camps of pipeline construction crews.</p>
+<div class="reach"><span class="rlabel">✦ It reached us</span><h4>Trisha's testimony</h4><p>Trisha Etringer told her story publicly before the March: learning her Ho-Chunk heritage at fifteen; going to Standing Rock in 2016 while pregnant, pepper sprayed, watching dogs loosed on the crowd. "For the longest time I couldn't sleep at night." And plainly: "The pipeline creates man camps. Women are specifically targeted with drugs, alcohol, rape and domestic violence."</p></div>
+<div class="reach"><span class="rlabel">✦ It reached us</span><h4>Foxy carries the poster</h4><p>Mile after mile, Foxy Onefeather carried the large MMIW poster — past ten thousand fenceposts, through the small towns, in front of every passing car — doing for rural Iowa what the Minneapolis speakers had done for me: carrying a truth to people it had never reached.</p></div>
+<p class="keep">MMIW became the March community's first common cause: in November 2018, with Christine Nobiss leading, we met Senator Grassley's staff about Savanna's Act and the SURVIVE Act. Savanna's Act and the Not Invisible Act became law in 2020; the Violence Against Women Act was reauthorized in 2022 with its tribal jurisdiction provisions intact. The coalition existed because we had walked together first.</p>`},
+
+{g:2,num:'Ch 10',title:'Farmers and the Black Snake',blurb:'Ruined soil, harassed landowners, and a forum where two knowledge systems met.',v:1,html:`
+<p>The March was an education in what the pipeline did to farmland: soil compacted to 300 psi, topsoil mixed into clay against the rules, drainage tile cut, standing water over the trench — visible from the road as we walked. Iowa State research later confirmed it: corn yields down 15 percent, soybeans down 25 percent over the disturbed ground. A landowner among us told of land agents harassing her son on his walk home from school and shining lights on her house at night. Mahmud Fitil added the tar sands stories: labs afraid to test spill water, and the 230,000-gallon Doon derailment with little visible cleanup.</p>
+<div class="reach"><span class="rlabel">✦ It reached us</span><h4>Two knowledges meet — Christine Nobiss at the Huxley forum</h4><p>After Lee Tesdell presented his bioreactor, cover crops, and prairie strips, Christine explained that Native agricultural practices are superior ways to grow food, especially for soil and water. And when a handout called ancient agriculture "simple," Native marchers corrected the record — maize was being grown here 1,100 years ago, in many developed varieties. Even in a friendly room, the settler reflex to diminish Indigenous achievement surfaced, was named, and was fixed: the ordinary work of decolonizing a conversation.</p></div>
+<p class="keep">Ed Fallon asked the question that still hangs over Iowa: how do we convince more farmers to change? The March's own answer was the room itself — Native people, farmers, and environmentalists eating together in a small-town church, learning to trust each other. When the CO2 pipelines came years later with the same playbook, that room reassembled: at Summit Carbon's door, at the Utilities Board, and in the Buffalo Rebellion.</p>`},
+
+{g:3,num:'Ch 11',title:'The Voices — Who Shared, and What They Gave',blurb:'Person by person: the moments when Native friends shared with us. The spine of the whole account.',v:1,html:`
+<p class="keep">These are the gifts, person by person — the spine of this whole account.</p>
+<div class="people">
+<div class="person"><h4>Manape LaMere</h4><p>Named the walk a <b>sacred journey</b>. Sang at Birdland Park. Renamed the holiday: <b>"We call it Thanks-taking."</b> Crushed wild grapes so we could smell them. At the final bonfire, thought out loud about sovereignty. Gave the March its charge: walk together now, work together later.</p></div>
+<div class="person"><h4>Donnielle Wanatee</h4><p>Prayed at crossing after crossing. Named the group: <b>"We are a tribe."</b> Remembered my kind face from the Minneapolis van. At Fort Dodge: <b>"They came for us at Standing Rock. They'll come for everybody if we don't band together."</b></p></div>
+<div class="person"><h4>Regina Tsosie</h4><p>Opened the March with a song. Told the press the pipeline had <b>desecrated sacred sites</b>. Embraced the Griffieons and joined their land fight to the theft of Native lands — the March's central irony, named with compassion on night one.</p></div>
+<div class="person"><h4>Trisha Etringer</h4><p>Shared her smudging in the rain, and her story: Ho-Chunk heritage learned at fifteen, Standing Rock while pregnant, the man camps' violence against Native women. Led the decolonization discussion at the last bonfire.</p></div>
+<div class="person"><h4>Matthew Lone Bear</h4><p>"This is a great walk because people actually talk with each other." And the story of his mother and the residential schools — the single most important gift I received. At Fort Dodge: "I hope people make a stand."</p></div>
+<div class="person"><h4>Alton &amp; Foxy Onefeather</h4><p>Alton's story of the horse that always came to him: "I really miss that horse." Foxy carried the MMIW poster for 94 miles, shared her own story walking through Ames, and gave the March its creed: <b>"Earth is my church."</b> We sent them off to their wedding with the community's gift.</p></div>
+<div class="person"><h4>Frank LaMere</h4><p>Followed us into Pilot Mound just to watch, then told us it made his <b>"heart soar like a hawk"</b> — and gave the elder's timescale: change takes forty years and more. <b>Not numbers, but persistence in raising up the truth.</b></p></div>
+<div class="person"><h4>Christine Nobiss (Sikowis)</h4><p>Co-organized the March. Told the IUB what it needed to hear. Taught Native agriculture as living science. Later gave me my assignment: learn and teach <b>LANDBACK</b>. Her writing frames the whole: wealth, for most First Nations, meant the ability to give.</p></div>
+<div class="person"><h4>Mahmud Fitil</h4><p>Filmed the rainy-morning smudging; shared the hard chemistry of tar sands and the neglect at Doon; later co-organized the CO2 pipeline actions where the March community reassembled.</p></div>
+<div class="person"><h4>Lakasha Yooxot Likipt &amp; Akicita Hoksida</h4><p>Security on the road; singers of the <b>Mni Wiconi Song</b> at Fort Dodge: "Grandmother earth gives life. The water is sacred… The Nation needs to take heart and be brave."</p></div>
+</div>
+<p>And the allies who held the space: Ed Fallon, Kathy Byrnes, Shari Hrdina, Sarah Spain, Sam Kuhn, Lyssa Wade, Miriam Kashia, Fintan Mason, Peter Clay — and the farms, churches, and towns that opened their doors. Hospitality, too, is how trust is built.</p>`},
+
+{g:4,num:'Ch 12',title:'Faith Meets Faith — Quakers and Indigenous Spirituality',blurb:'Silence meeting song: what the two ways share, and the question underneath all our questions.',v:1,html:`
+<p>I could have marched without bringing up my faith, but understanding had to travel both directions — and Quakers could not be present with integrity while the residential school history stayed unspoken. What I found was resonance: Quakers wait in silence for the Spirit; my Native friends live in continual relationship with the Spirit — with each other and with Mother Earth, the land, air, water, plants, and animals. Their lives <i>do</i> reflect their beliefs, which is exactly what Quakers aspire to and often miss.</p>
+<div class="quote native">Everywhere people ask, "what can we do?" The question, what can we do, is the second question. The first question is "what can we be?" Because what you can do is a consequence of who you are.<span class="who">— Arkan Lushwala</span></div>
+<div class="quote native">Two-eyed seeing recognizes the benefits of seeing from one eye with the strengths of Indigenous ways of knowing, from the other eye the strengths of the Western ways of knowing, and using both of these eyes together to create new forms of understanding and insight.<span class="who">— Elder Albert Marshall (Mi'kmaq, Eskasoni First Nation)</span></div>
+<p class="keep">Lee Tesdell's bioreactor and Christine's Native agriculture in one forum. Donnielle's prayers and a Quaker silence at the same crossings. A solar trailer and a tipi in the same camp. As environmental chaos deepens, this combination is our best hope — because as Gus Speth admitted, the top environmental problems are selfishness, greed, and apathy, and science doesn't know how to fix those. The people who know something about that transformation were walking beside us.</p>`},
+
+{g:4,num:'Ch 13',title:'Stories Have Rules — What Being Trusted Requires',blurb:'Foxy’s gracious lesson: what reaches us, we do not then own.',v:1,html:`
+<p class="keep">During the March, walking through Ames, Foxy Onefeather shared her story with me — including that she had not experienced racism until she moved to the Midwest. I wrote about it on my blog. I did not ask her first.</p>
+<p class="keep">At the 2019 reunion, Foxy told me, with great grace, what that had been like: the first time she had seen a written version of her story. I had gotten it right, she said — and yes, asking first would have been best. Coming from an oral tradition, seeing her story written down was new to her. She decided it was alright, and even offered her and Alton's photos of the March for the collection. From their home in South Dakota, they had been reading my blog, and it helped them see that some non-native people also care for the water, air, and earth.</p>
+<p class="keep">The lesson, taught unforgettably: what reaches us, we do not then own. Stories shared in trust come with responsibilities — especially across the line between an oral culture and a writing one, and between colonized and colonizer. If relationship is the only channel through which these truths can travel, then honoring the terms of relationship is not etiquette. It is the whole infrastructure.</p>`},
+
+{g:4,num:'Ch 14',title:'The Fruits — What the Relationships Built',blurb:'Court dates, laws, a wedding, Mutual Aid, LANDBACK, the Buffalo Rebellion, and a documentary.',v:0,html:`
+<p><b>The court.</b> Four days after Fort Dodge, the community reassembled at the Iowa Supreme Court — its first test, passed. The ruling went for the pipeline; the March was never only about the case.</p>
+<p><b>Legislation.</b> The Grassley meeting, November 2018, Christine Nobiss leading. Savanna's Act and the Not Invisible Act became law in 2020; VAWA 2022 kept its tribal provisions. Frank LaMere's arithmetic — persistence, not numbers — proved out.</p>
+<p><b>The community.</b> The 2019 reunion. Alton and Foxy's wedding, seeded by the marchers' gift. The firstnationfarmer.com library, built in 2020 so the stories keep reaching people.</p>
+<p><b>Mutual Aid.</b> A Wet'suwet'en vigil brought Ronnie James, who mentored me into Des Moines Mutual Aid — Saturday food boxes in a lineage running back to the Black Panthers. One Saturday, Donnielle was there: one network.</p>
+<p><b>LANDBACK and the next pipelines.</b> Sikowis's assignment became the LANDBACK Friends website. When the CO2 pipelines came with the same eminent domain playbook, the March community was already assembled — inside a new coalition, the Buffalo Rebellion, whose precursor was this March.</p>
+<p><b>Truth and healing.</b> Iowa Conservative Friends funding "They Found Us," about the residential school at Sikowis's George Gordon First Nation.</p>
+<p>None of these fruits grew from strangers. Every one grew from people who had shared rain, blisters, buffalo and fry bread, prayers over a pipeline, and stories on a gravel road.</p>`},
+
+{g:4,num:'End',title:'Conclusion — One Story at a Time',blurb:'A curriculum settlers were never taught, in the only classroom that could hold it.',v:1,html:`
+<p class="keep">Organize the March by subjects, and you see a curriculum — the one settlers were never taught, delivered by the only faculty who could teach it, in the only classroom that could hold it. That a walk can be a sacred journey, and water can be life itself. That the land under every Iowa farm has two histories of taking. That the residential schools are a living wound, carried by the mother of a friend. That Native women go missing at rates the country refuses to see. That soil is alive and can be killed. That wealth can mean the ability to give. That persistence matters more than numbers. That stories have rules. That the first question is not what can we do, but what can we be.</p>
+<p class="keep">The classroom: empty gravel roads, in the rain. The pedagogy: shared struggle and unhurried time. The tuition: blisters, storms, and the willingness to say hard things out loud — and to hear them.</p>
+<p>My grandmother, Lorene Standing, said the will of God is often revealed in a series of small steps. The March was ninety-four miles of them. Through the relationships those steps built, what did not reach us — reached us at last. And it keeps reaching.</p>
+<div class="quote native">When we take the time to share those stories with each other, we get bigger inside, we see each other, we recognize our kinship — we change the world one story at a time.<span class="who">— Richard Wagamese</span></div>
+<p class="keep">We walked. We talked. We got bigger inside.</p>`}
+];
+
+const GROUPS = ['Start Here','How Trust Was Built','The Truths That Reached Us','The People','What It Means'];
+const home = document.getElementById('home'), chapbox = document.getElementById('chapbox');
+
+// build home grid
+GROUPS.forEach((g,gi)=>{
+  const items = CH.map((c,i)=>({c,i})).filter(o=>o.c.g===gi);
+  if(!items.length) return;
+  const h = document.createElement('div'); h.className='groupTitle'; h.textContent = g; home.appendChild(h);
+  const grid = document.createElement('div'); grid.className='grid'; home.appendChild(grid);
+  items.forEach(o=>{
+    const b = document.createElement('button'); b.className='subj';
+    b.innerHTML = '<span class="num">'+o.c.num+'</span><h3>'+o.c.title+'</h3><p>'+o.c.blurb+'</p>'+
+      (o.c.html.includes('rlabel') ? '<span class="voicect">✦ contains moments that reached us</span>' : '');
+    b.onclick = ()=>openChap(o.i);
+    grid.appendChild(b);
+  });
+});
+
+// build chapters
+CH.forEach((c,i)=>{
+  const s = document.createElement('section'); s.className='chap'; s.id='ch'+i;
+  s.innerHTML = '<span class="chaptag">'+GROUPS[c.g]+' · '+c.num+'</span><h2 class="chaptitle">'+c.title+'</h2>'+c.html+
+    '<div class="pager"><button onclick="openChap('+((i-1+CH.length)%CH.length)+')">← Previous subject</button>'+
+    '<button onclick="showHome()">☰ All subjects</button>'+
+    '<button onclick="openChap('+((i+1)%CH.length)+')">Next subject →</button></div>';
+  chapbox.appendChild(s);
+});
+
+let cur = -1;
+function openChap(i){
+  cur = i;
+  document.getElementById('home').style.display='none';
+  document.getElementById('reader').style.display='block';
+  document.querySelectorAll('.chap').forEach((s,j)=>s.classList.toggle('show',j===i));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function showHome(){
+  cur = -1;
+  document.getElementById('reader').style.display='none';
+  document.getElementById('home').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function toggleVoices(){
+  document.body.classList.toggle('voicesOnly');
+  document.getElementById('voicesBtn').classList.toggle('on');
+}
+document.addEventListener('keydown',e=>{
+  if(cur<0) return;
+  if(e.key==='ArrowRight') openChap((cur+1)%CH.length);
+  if(e.key==='ArrowLeft') openChap((cur-1+CH.length)%CH.length);
+  if(e.key==='Escape') showHome();
+});
+</script>
+</body>
+</html>
